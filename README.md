@@ -1,3 +1,4 @@
-BlankOpenGLScene_Qt - Toby Gilbert
+Optix samples
 ===================
-A blank OpenGL scene to work from using Qt widgets for window management, assimp for model loading and devIL for image loading.
+The first 2 optix samples ported to Qt. In its current state it just outputs what is ray traced to a texture in the executable directory.
+
