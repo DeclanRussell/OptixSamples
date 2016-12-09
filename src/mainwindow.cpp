@@ -1,19 +1,23 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
 #include <QFileDialog>
+#include <QGroupBox>
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
-    ui->setupUi(this);
+
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
+
+    QGroupBox *gb = new QGroupBox(this);
+    setCentralWidget(gb);
+    m_gridLayout = new QGridLayout(gb);
+    gb->setLayout(m_gridLayout);
 
     QGLFormat format;
     format.setVersion(4,1);
     format.setProfile(QGLFormat::CoreProfile);
 
     m_openGLWidget = new OpenGLWidget(format,this);
-    ui->gridLayout->addWidget(m_openGLWidget,0,0,1,1);
+    m_gridLayout->addWidget(m_openGLWidget,0,0,1,1);
+    m_openGLWidget->show();
 }
 
 MainWindow::~MainWindow(){
-    delete ui;
-    delete m_openGLWidget;
 }

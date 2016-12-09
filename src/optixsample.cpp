@@ -50,7 +50,7 @@ void OptixSample::init(){
 QImage OptixSample::trace(){
     //launch it
     m_context->launch(0,m_width,m_height);
-    std::cout<<"here"<<std::endl;
+    std::cout<<"Optix Sample one trace"<<std::endl;
 
     QImage img(m_width,m_height,QImage::Format_RGB32);
     QColor color;
@@ -59,7 +59,7 @@ QImage OptixSample::trace(){
     typedef struct { float r; float g; float b; float a;} rgb;
     rgb* rgb_data = (rgb*)data;
     for(unsigned int i=0; i<m_width*m_height; ++i){
-        std::cout<<rgb_data[i].r<<","<<rgb_data[i].g<<","<<rgb_data[i].b<<std::endl;
+        //std::cout<<rgb_data[i].r<<","<<rgb_data[i].g<<","<<rgb_data[i].b<<std::endl;
         color.setRgbF(rgb_data[i].r,rgb_data[i].g,rgb_data[i].b,rgb_data[i].a);
         idx = floor((float)i/m_height);
 
@@ -67,7 +67,7 @@ QImage OptixSample::trace(){
 
     }
     m_outputBuffer->unmap();
-    img.save("optixSmapleOne.png","PNG");
+    img.save("optixSampleOne.png","PNG");
 
     return img;
 }

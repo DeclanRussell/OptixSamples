@@ -29,6 +29,6 @@ GLuint Texture::getTextureID(){
 
 void Texture::setParamater(GLenum _pname, GLenum _param){
    glBindTexture(GL_TEXTURE_2D, m_textureID);
-   glTexParameteri(GL_TEXTURE_2D, _param, _param);
+   glTexParameteri(GL_TEXTURE_2D, _pname, _param);
    glBindTexture(GL_TEXTURE_2D, NULL);
 }

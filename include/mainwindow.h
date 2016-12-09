@@ -2,10 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QGridLayout>
 #include "OpenGLWidget.h"
-namespace Ui {
-class MainWindow;
-}
 
 class MainWindow : public QMainWindow
 {
@@ -16,8 +14,8 @@ public:
     ~MainWindow();
 
 private:
-    Ui::MainWindow *ui;
     OpenGLWidget *m_openGLWidget;
+    QGridLayout *m_gridLayout;
 
 
 

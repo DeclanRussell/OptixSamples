@@ -143,7 +143,8 @@ optix::Material OptixSampleTwo::createMaterial(){
 void OptixSampleTwo::createGeometryInstances(optix::Geometry _box, optix::Material _material){
 
     // our transforms
-    optix::Transform transforms[m_numBoxes];
+    std::vector<optix::Transform> transforms;
+    transforms.resize(m_numBoxes);
     // geomtry group of geomtrygroups.... groupception if you will
     optix::Group top_level_group;
 
@@ -229,7 +230,7 @@ void OptixSampleTwo::createGeometryInstances(optix::Geometry _box, optix::Materi
 QImage OptixSampleTwo::trace(){
     //launch it
     m_context->launch(0,m_width,m_height);
-    std::cout<<"here"<<std::endl;
+    std::cout<<"here trace sample 2"<<std::endl;
 
     QImage img(m_width,m_height,QImage::Format_RGB32);
     QColor color;

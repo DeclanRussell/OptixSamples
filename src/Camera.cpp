@@ -26,6 +26,7 @@ void Camera::setProjectionMatrix(float _fov, float _aspect, float _near, float _
 }
 
 void Camera::setShape(float aspect){
+    m_aspect = aspect;
     setProjectionMatrix(m_fov, m_aspect, 0.1f, 350.0f);
 }
 

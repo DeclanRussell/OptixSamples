@@ -88,20 +88,17 @@ RT_PROGRAM void intersect_sphere( int primIdx )
 
 RT_PROGRAM void bounds_sphere (int, float result[6])
 {
-  const float area = 2 * (sphere.w * sphere.w);
-  optix::Aabb* aabb = (optix::Aabb*)result;
-
   float3 center = make_float3(sphere.x,sphere.y,sphere.z);
   float3 radiusV3 = make_float3(sphere.w,sphere.w,sphere.w);
-  float3 min = center - radiusV3;
-  float3 max = center + radiusV3;
+  float3 mmin = center - radiusV3;
+  float3 mmax = center + radiusV3;
 
-  result[0] = min.x;
-  result[1] = min.y;
-  result[2] = min.z;
-  result[3] = max.x;
-  result[4] = max.y;
-  result[5] = max.z;
+  result[0] = mmin.x;
+  result[1] = mmin.y;
+  result[2] = mmin.z;
+  result[3] = mmax.x;
+  result[4] = mmax.y;
+  result[5] = mmax.z;
 }
 
 RT_PROGRAM void bounds (int, float result[6])

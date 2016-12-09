@@ -5,11 +5,11 @@
 #include "OpenGLWidget.h"
 #include <iostream>
 
-const static float INCREMENT=0.01;
+const static float INCREMENT=0.01f;
 //------------------------------------------------------------------------------------------------------------------------------------
 /// @brief the increment for the wheel zoom
 //------------------------------------------------------------------------------------------------------------------------------------
-const static float ZOOM=0.1;
+const static float ZOOM=0.1f;
 OpenGLWidget::OpenGLWidget(const QGLFormat _format, QWidget *_parent) : QGLWidget(_format,_parent){
     // set this widget to have the initial keyboard focus
     setFocus();
@@ -41,15 +41,17 @@ void OpenGLWidget::initializeGL(){
 
     // as re-size is not explicitly called we need to do this.
     glViewport(0,0,width(),height());
-
+    std::cout<<"init"<<std::endl;
     m_sampleScene = new OptixSample();
     m_sampleScene->setSize(512u,512u);
     m_sampleScene->init();
     m_sampleScene->trace();
 
+    std::cout<<"Create optix sample two"<<std::endl;
     m_sampleSceneTwo = new OptixSampleTwo();
     m_sampleSceneTwo->setSize(1080,1080);
     m_sampleSceneTwo->setNumBoxes(10);
+    std::cout<<"Init sample two"<<std::endl;
     m_sampleSceneTwo->init();
     m_sampleSceneTwo->trace();
 
@@ -75,6 +77,12 @@ void OpenGLWidget::paintGL(){
 
 
 
+}
+//----------------------------------------------------------------------------------------------------------------------
+void OpenGLWidget::resizeGL(QResizeEvent *_event)
+{
+    // set the viewport for openGL
+    glViewport(0,0,_event->size().width(),_event->size().height());
 }
 //------------------------------------------------------------------------------------------------------------------------------------
 void OpenGLWidget::mouseMoveEvent (QMouseEvent *_event){

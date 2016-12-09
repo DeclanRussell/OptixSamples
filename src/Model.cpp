@@ -126,15 +126,13 @@ void Model::loadModel(std::string _path){
 
    aiVector3D* vertices;
    aiVector3D* normals;
-   aiVector3D* textureCoords[mesh->mNumVertices];
+   aiVector3D* textureCoords;
    aiVector3D* tangents;
 
    vertices = mesh->mVertices;
    m_numVerts = mesh->mNumVertices;
    normals = mesh->mNormals;
-   for (int i = 0; i<mesh->mNumVertices; i++){
-      textureCoords[i] = &(mesh->mTextureCoords[0][i]);
-   }
+   textureCoords = mesh->mTextureCoords[0];
    tangents = mesh->mTangents;
 
    glGenBuffers(1, &m_vertexVBO);
@@ -149,7 +147,7 @@ void Model::loadModel(std::string _path){
 
    glGenBuffers(1, &m_textureVBO);
    glBindBuffer(GL_ARRAY_BUFFER, m_textureVBO);
-   glBufferData(GL_ARRAY_BUFFER, sizeof(aiVector3D)*mesh->mNumVertices, textureCoords[0], GL_STATIC_DRAW);
+   glBufferData(GL_ARRAY_BUFFER, sizeof(aiVector3D)*mesh->mNumVertices, &textureCoords[0], GL_STATIC_DRAW);
    glBindBuffer(GL_ARRAY_BUFFER, NULL);
 
    glGenBuffers(1, &m_tangentsVBO);
@@ -190,4 +188,5 @@ void Model::loadModel(std::string _path){
    glBindBuffer(GL_ARRAY_BUFFER, NULL);
 
    glBindVertexArray(NULL);
+
 }
